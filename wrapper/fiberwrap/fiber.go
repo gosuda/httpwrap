@@ -32,7 +32,7 @@ func (a *Wrapper) Handle(method, path string, handler HandlerFunc) {
 			he := &httperror.HttpError{}
 			switch errors.As(err, &he) {
 			case true:
-				return c.Status(he.Code).SendString(err.Error())
+				return c.Status(he.Code).SendString(he.ErrorMessage())
 			case false:
 				return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 			}
