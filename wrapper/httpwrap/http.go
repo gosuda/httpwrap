@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/snowmerak/httpwrap/httperror"
+	"gosuda.org/httpwrap/httperror"
 )
 
 type Mux struct {

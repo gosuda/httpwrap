@@ -5,7 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/snowmerak/httpwrap/httperror"
+	"gosuda.org/httpwrap/httperror"
 )
 
 type Wrapper struct {

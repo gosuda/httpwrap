@@ -1,4 +1,4 @@
-module github.com/snowmerak/httpwrap
+module gosuda.org/httpwrap
 
 go 1.24.2
 

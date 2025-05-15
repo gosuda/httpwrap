@@ -18,7 +18,7 @@
 To install `httpwrap` and its subpackages, use `go get`:
 
 ```bash
-go get -u github.com/snowmerak/httpwrap
+go get -u gosuda.org/httpwrap
 ```
 
 ## httperror
@@ -53,8 +53,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/snowmerak/httpwrap/httperror"
-	"github.com/snowmerak/httpwrap/wrapper/httpwrap"
+	"gosuda.org/httpwrap/httperror"
+	"gosuda.org/httpwrap/wrapper/httpwrap"
 )
 
 func myHandler(w http.ResponseWriter, r *http.Request) error {
@@ -97,8 +97,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/snowmerak/httpwrap/httperror"
-	"github.com/snowmerak/httpwrap/wrapper/chiwrap"
+	"gosuda.org/httpwrap/httperror"
+	"gosuda.org/httpwrap/wrapper/chiwrap"
 )
 
 func myChiHandler(w http.ResponseWriter, r *http.Request) error {
@@ -146,8 +146,8 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/snowmerak/httpwrap/httperror"
-	"github.com/snowmerak/httpwrap/wrapper/fiberwrap"
+	"gosuda.org/httpwrap/httperror"
+	"gosuda.org/httpwrap/wrapper/fiberwrap"
 )
 
 func myFiberHandler(c *fiber.Ctx) error {
