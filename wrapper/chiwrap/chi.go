@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
-	"gosuda.org/httpwrap/httperror"
+	"github.com/gosuda/httpwrap/httperror"
 )
 
 type Router struct {

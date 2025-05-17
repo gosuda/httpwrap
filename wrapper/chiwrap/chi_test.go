@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"gosuda.org/httpwrap/httperror"
-	"gosuda.org/httpwrap/wrapper/chiwrap"
+	"github.com/gosuda/httpwrap/httperror"
+	"github.com/gosuda/httpwrap/wrapper/chiwrap"
 )
 
 func TestNewRouter(t *testing.T) {
