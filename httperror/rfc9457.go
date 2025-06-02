@@ -683,7 +683,7 @@ func (p *RFC9457Error) ToHttpError() *HttpError {
 	jsonBytes, err := json.Marshal(p)
 	if err != nil {
 		// If marshaling fails, fall back to just using the detail
-		return New(p.Status, p.Detail)
+		return New(p.Status, p.Detail, "text/plain")
 	}
 	return New(p.Status, string(jsonBytes), contentType)
 }
