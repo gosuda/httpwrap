@@ -500,10 +500,11 @@ func NetworkAuthenticationRequiredProblem7807(detail string, title ...string) *R
 
 // ToHttpError converts a RFC7807Error to an HttpError with JSON representation of the problem.
 func (p *RFC7807Error) ToHttpError() *HttpError {
+	const ContentType = "application/problem+json"
 	jsonBytes, err := json.Marshal(p)
 	if err != nil {
 		// If marshaling fails, fall back to just using the detail
 		return New(p.Status, p.Detail)
 	}
-	return New(p.Status, string(jsonBytes))
+	return New(p.Status, string(jsonBytes), ContentType)
 }

@@ -679,12 +679,13 @@ func NetworkAuthenticationRequiredProblem9457(detail string, title ...string) *R
 
 // ToHttpError converts a RFC9457Error to an HttpError with JSON representation of the problem.
 func (p *RFC9457Error) ToHttpError() *HttpError {
+	const contentType = "application/problem+json"
 	jsonBytes, err := json.Marshal(p)
 	if err != nil {
 		// If marshaling fails, fall back to just using the detail
 		return New(p.Status, p.Detail)
 	}
-	return New(p.Status, string(jsonBytes))
+	return New(p.Status, string(jsonBytes), contentType)
 }
 
 // ToRFC7807Error converts a RFC9457Error to a RFC7807Error for backward compatibility.

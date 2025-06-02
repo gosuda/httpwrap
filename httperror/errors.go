@@ -11,17 +11,23 @@ import (
 // The error message and status code can be used to provide more context about the error
 // and to help diagnose issues in the application.
 type HttpError struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
+	Code        int    `json:"code"`
+	Message     string `json:"message"`
+	ContentType string `json:"content_type,omitempty"` // Optional content type for the error response
 }
 
 // New creates a new HttpError with the given status code and message.
 // The status code is an integer representing the HTTP status code associated with the error.
 // The message is a string representing the error message.
-func New(code int, message string) *HttpError {
+func New(code int, message string, contentType ...string) *HttpError {
+	ct := ""
+	if len(contentType) > 0 {
+		ct = contentType[0]
+	}
 	return &HttpError{
-		Code:    code,
-		Message: message,
+		Code:        code,
+		Message:     message,
+		ContentType: ct,
 	}
 }
 
