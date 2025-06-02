@@ -26,7 +26,7 @@ func TestNewWrapper(t *testing.T) {
 
 	go func() {
 		if err := w.App().Listen(":8080"); err != nil {
-			t.Fatalf("Failed to start server: %v", err)
+			t.Errorf("Failed to start server: %v", err)
 		}
 	}()
 
@@ -96,7 +96,7 @@ func TestWrapper_HandleWithContentType(t *testing.T) {
 
 	go func() {
 		if err := w.App().Listen(":8081"); err != nil {
-			t.Fatalf("Failed to start server: %v", err)
+			t.Errorf("Failed to start server: %v", err)
 		}
 	}()
 
