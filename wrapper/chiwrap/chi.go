@@ -26,17 +26,29 @@ func NewRouter(errCallback func(err error)) *Router {
 
 type HandlerFunc func(writer http.ResponseWriter, request *http.Request) error
 
+// handleError processes an error and sends appropriate HTTP response
+func (r *Router) handleError(writer http.ResponseWriter, err error) {
+	he := &httperror.HttpError{}
+	switch errors.As(err, &he) {
+	case true:
+		// Set Content-Type if specified in HttpError
+		if he.ContentType != "" {
+			writer.Header().Set("Content-Type", he.ContentType)
+			writer.WriteHeader(he.Code)
+			writer.Write([]byte(he.Message))
+		} else {
+			http.Error(writer, he.Message, he.Code)
+		}
+	case false:
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+	}
+	r.errCallback(err)
+}
+
 func (r *Router) Handle(pattern string, handler HandlerFunc) {
 	r.router.HandleFunc(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -44,14 +56,7 @@ func (r *Router) Handle(pattern string, handler HandlerFunc) {
 func (r *Router) Get(pattern string, handler HandlerFunc) {
 	r.router.Get(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -59,14 +64,7 @@ func (r *Router) Get(pattern string, handler HandlerFunc) {
 func (r *Router) Post(pattern string, handler HandlerFunc) {
 	r.router.Post(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -74,14 +72,7 @@ func (r *Router) Post(pattern string, handler HandlerFunc) {
 func (r *Router) Put(pattern string, handler HandlerFunc) {
 	r.router.Put(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -89,14 +80,7 @@ func (r *Router) Put(pattern string, handler HandlerFunc) {
 func (r *Router) Delete(pattern string, handler HandlerFunc) {
 	r.router.Delete(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -104,14 +88,7 @@ func (r *Router) Delete(pattern string, handler HandlerFunc) {
 func (r *Router) Patch(pattern string, handler HandlerFunc) {
 	r.router.Patch(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -119,14 +96,7 @@ func (r *Router) Patch(pattern string, handler HandlerFunc) {
 func (r *Router) Options(pattern string, handler HandlerFunc) {
 	r.router.Options(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }
@@ -134,14 +104,7 @@ func (r *Router) Options(pattern string, handler HandlerFunc) {
 func (r *Router) Head(pattern string, handler HandlerFunc) {
 	r.router.Head(pattern, func(writer http.ResponseWriter, request *http.Request) {
 		if err := handler(writer, request); err != nil {
-			he := &httperror.HttpError{}
-			switch errors.As(err, &he) {
-			case true:
-				http.Error(writer, he.Message, he.Code)
-			case false:
-				http.Error(writer, err.Error(), http.StatusInternalServerError)
-			}
-			r.errCallback(err)
+			r.handleError(writer, err)
 		}
 	})
 }

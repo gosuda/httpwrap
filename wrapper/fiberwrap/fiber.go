@@ -32,6 +32,10 @@ func (a *Wrapper) Handle(method, path string, handler HandlerFunc) {
 			he := &httperror.HttpError{}
 			switch errors.As(err, &he) {
 			case true:
+				// Set Content-Type if specified in HttpError
+				if he.ContentType != "" {
+					c.Set("Content-Type", he.ContentType)
+				}
 				return c.Status(he.Code).SendString(he.ErrorMessage())
 			case false:
 				return c.Status(fiber.StatusInternalServerError).SendString(err.Error())

@@ -30,7 +30,14 @@ func (m *Mux) Handle(pattern string, handler HandlerFunc) {
 			he := &httperror.HttpError{}
 			switch errors.As(err, &he) {
 			case true:
-				http.Error(writer, he.Message, he.Code)
+				// Set Content-Type if specified in HttpError
+				if he.ContentType != "" {
+					writer.Header().Set("Content-Type", he.ContentType)
+					writer.WriteHeader(he.Code)
+					writer.Write([]byte(he.Message))
+				} else {
+					http.Error(writer, he.Message, he.Code)
+				}
 			case false:
 				http.Error(writer, err.Error(), http.StatusInternalServerError)
 			}
