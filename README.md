@@ -39,11 +39,15 @@ The package offers several functions to create these specialized errors:
 
 When a handler in your application returns an error created by these functions (e.g., `httperror.New()` or `httperror.BadRequest()`), the respective wrapper will use the `statusCode` and `message` from this error to formulate the HTTP response. If a handler returns any other standard Go error, the wrappers will default to sending a 500 Internal Server Error.
 
-## RFC7807 Problem Details
+## Problem Details for HTTP APIs
 
-The package also implements the [RFC7807 Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807) specification, providing a standardized way to describe problems that occurred during HTTP requests.
+The `httperror` package implements both RFC7807 and RFC9457 specifications for Problem Details for HTTP APIs, providing standardized ways to describe problems that occurred during HTTP requests.
 
-### RFC7807Error Struct
+### RFC7807 Problem Details (Legacy)
+
+[RFC7807](https://tools.ietf.org/html/rfc7807) was the original specification for Problem Details for HTTP APIs. It provides a standardized format for describing HTTP API errors.
+
+#### RFC7807Error Struct
 
 The `RFC7807Error` struct implements the error interface and follows the RFC7807 standard with the following fields:
 
@@ -54,37 +58,110 @@ The `RFC7807Error` struct implements the error interface and follows the RFC7807
 * `Instance`: A URI reference that identifies the specific occurrence of the problem.
 * `Extensions`: Additional members that provide information about the problem.
 
-### Creating Problem Details Errors
+#### Creating RFC7807 Errors
 
-You can create RFC7807 errors using helper functions for common HTTP status codes:
+You can create RFC7807 errors using helper functions with the `7807` suffix:
 
 ```go
 // Create a basic 400 Bad Request problem
-err := httperror.BadRequestProblem("Invalid request parameters")
+err := httperror.BadRequestProblem7807("Invalid request parameters")
 
 // Create a 404 Not Found problem with custom title
-err := httperror.NotFoundProblem("User with ID 123 not found", "User Not Found")
+err := httperror.NotFoundProblem7807("User with ID 123 not found", "User Not Found")
 
 // Add more context with fluent API
-err := httperror.ForbiddenProblem("Insufficient permissions to access resource")
+err := httperror.ForbiddenProblem7807("Insufficient permissions to access resource")
     .WithType("https://example.com/errors/insufficient-permissions")
     .WithInstance("/api/resources/123")
     .WithExtension("resource_id", "123")
     .WithExtension("required_role", "admin")
 ```
 
-Every HTTP status code from the standard Go `http` package has a corresponding Problem helper function.
+### RFC9457 Problem Details (Recommended)
+
+[RFC9457](https://www.rfc-editor.org/rfc/rfc9457.html) obsoletes RFC7807 and provides an improved specification for Problem Details for HTTP APIs with enhanced features and better guidance.
+
+#### Key Improvements in RFC9457
+
+* **Registry for Common Problem Types**: Standardized problem type URIs for common scenarios
+* **Multiple Problems Handling**: Ability to describe multiple related problems in a single response
+* **Enhanced URI Guidance**: Better guidance for dereferenceable vs non-dereferenceable type URIs
+* **Improved Security Considerations**: Updated security guidelines and best practices
+* **Trace ID Support**: Built-in support for debugging and tracking identifiers
+
+#### RFC9457Error Struct
+
+The `RFC9457Error` struct extends the RFC7807 concept with additional capabilities:
+
+* All RFC7807 fields (Type, Title, Status, Detail, Instance, Extensions)
+* Enhanced extension support for trace IDs, retry information, and multiple problems
+* Validation methods to ensure RFC9457 compliance
+* Common problem type registry for standardized error types
+
+#### Creating RFC9457 Errors (Recommended)
+
+You can create RFC9457 errors using helper functions with the `9457` suffix:
+
+```go
+// Create a basic 400 Bad Request problem
+err := httperror.BadRequestProblem9457("Invalid request parameters")
+
+// Create a 404 Not Found problem with custom title
+err := httperror.NotFoundProblem9457("User with ID 123 not found", "User Not Found")
+
+// Add more context with fluent API
+err := httperror.ForbiddenProblem9457("Insufficient permissions to access resource")
+    .WithType("https://example.com/errors/insufficient-permissions")
+    .WithInstance("/api/resources/123")
+    .WithExtension("resource_id", "123")
+    .WithExtension("required_role", "admin")
+```
+
+#### RFC9457 Enhanced Features
+
+```go
+// Use common problem types from registry
+err := httperror.BadRequestProblem9457("Validation failed")
+// Automatically uses CommonProblemTypes.ValidationError
+
+// Add trace ID for debugging
+err := httperror.InternalServerErrorProblem9457("Database connection failed")
+    .WithTraceID("trace-abc123def456")
+
+// Handle multiple related problems
+validationProblems := []interface{}{
+    map[string]interface{}{
+        "field": "email",
+        "code": "INVALID_FORMAT",
+        "message": "Email format is invalid",
+    },
+    map[string]interface{}{
+        "field": "age",
+        "code": "OUT_OF_RANGE", 
+        "message": "Age must be between 0-120",
+    },
+}
+err := httperror.UnprocessableEntityProblem9457("Multiple validation errors")
+    .WithMultipleProblems(validationProblems)
+
+// Rate limiting with retry information
+err := httperror.TooManyRequestsProblem9457("Rate limit exceeded")
+    .WithRetryAfter(60)
+    .WithExtension("limit", 100)
+    .WithExtension("window", "1 minute")
+```
 
 ### Converting to HTTP Response
 
-The `RFC7807Error` type includes a `ToHttpError()` method which converts the problem detail to a JSON representation for HTTP responses:
+Both RFC7807Error and RFC9457Error types include a `ToHttpError()` method which converts the problem detail to a JSON representation for HTTP responses:
 
 ```go
 // In your HTTP handler
 func myHandler(w http.ResponseWriter, r *http.Request) error {
     // Some logic that might produce an error
     if !userHasAccess {
-        err := httperror.ForbiddenProblem("User does not have access to the resource")
+        // Using RFC9457 (recommended)
+        err := httperror.ForbiddenProblem9457("User does not have access to the resource")
             .WithType("https://example.com/errors/access-denied")
             .WithInstance(r.URL.Path)
             .WithExtension("user_id", userId)
