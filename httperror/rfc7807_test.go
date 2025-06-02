@@ -273,36 +273,36 @@ func TestProblemHelperFunctions(t *testing.T) {
 		wantTitle string
 	}{
 		{
-			name:      "BadRequestProblem",
-			fn:        BadRequestProblem,
+			name:      "BadRequestProblem7807",
+			fn:        BadRequestProblem7807,
 			status:    http.StatusBadRequest,
 			detail:    "Invalid input",
 			wantTitle: "Bad Request",
 		},
 		{
-			name:      "BadRequestProblem with custom title",
-			fn:        BadRequestProblem,
+			name:      "BadRequestProblem7807 with custom title",
+			fn:        BadRequestProblem7807,
 			status:    http.StatusBadRequest,
 			detail:    "Invalid input",
 			wantTitle: "Validation Error",
 		},
 		{
-			name:      "NotFoundProblem",
-			fn:        NotFoundProblem,
+			name:      "NotFoundProblem7807",
+			fn:        NotFoundProblem7807,
 			status:    http.StatusNotFound,
 			detail:    "Resource not found",
 			wantTitle: "Not Found",
 		},
 		{
-			name:      "NotFoundProblem with custom title",
-			fn:        NotFoundProblem,
+			name:      "NotFoundProblem7807 with custom title",
+			fn:        NotFoundProblem7807,
 			status:    http.StatusNotFound,
 			detail:    "Resource not found",
 			wantTitle: "Missing Resource",
 		},
 		{
-			name:      "ForbiddenProblem",
-			fn:        ForbiddenProblem,
+			name:      "ForbiddenProblem7807",
+			fn:        ForbiddenProblem7807,
 			status:    http.StatusForbidden,
 			detail:    "Access denied",
 			wantTitle: "Forbidden",
@@ -313,9 +313,9 @@ func TestProblemHelperFunctions(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			var err *RFC7807Error
 
-			if tt.name == "BadRequestProblem with custom title" {
+			if tt.name == "BadRequestProblem7807 with custom title" {
 				err = tt.fn(tt.detail, "Validation Error")
-			} else if tt.name == "NotFoundProblem with custom title" {
+			} else if tt.name == "NotFoundProblem7807 with custom title" {
 				err = tt.fn(tt.detail, "Missing Resource")
 			} else {
 				err = tt.fn(tt.detail)
@@ -338,7 +338,7 @@ func TestProblemHelperFunctions(t *testing.T) {
 
 func TestRFC7807CompleteFlow(t *testing.T) {
 	// Create a problem with all fields
-	problem := BadRequestProblem("Invalid user ID format")
+	problem := BadRequestProblem7807("Invalid user ID format")
 	problem = problem.WithType("https://example.com/errors/validation")
 	problem = problem.WithInstance("/api/users/abc")
 	problem = problem.WithExtension("invalid_field", "user_id")

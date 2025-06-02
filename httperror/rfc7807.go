@@ -148,9 +148,9 @@ func (p *RFC7807Error) MarshalJSON() ([]byte, error) {
 	return json.Marshal(result)
 }
 
-// BadRequestProblem creates a 400 Bad Request problem detail.
+// BadRequestProblem7807 creates a 400 Bad Request problem detail.
 // If title is empty, it defaults to "Bad Request".
-func BadRequestProblem(detail string, title ...string) *RFC7807Error {
+func BadRequestProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Bad Request"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -158,9 +158,9 @@ func BadRequestProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusBadRequest, t, detail)
 }
 
-// UnauthorizedProblem creates a 401 Unauthorized problem detail.
+// UnauthorizedProblem7807 creates a 401 Unauthorized problem detail.
 // If title is empty, it defaults to "Unauthorized".
-func UnauthorizedProblem(detail string, title ...string) *RFC7807Error {
+func UnauthorizedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Unauthorized"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -168,9 +168,9 @@ func UnauthorizedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusUnauthorized, t, detail)
 }
 
-// PaymentRequiredProblem creates a 402 Payment Required problem detail.
+// PaymentRequiredProblem7807 creates a 402 Payment Required problem detail.
 // If title is empty, it defaults to "Payment Required".
-func PaymentRequiredProblem(detail string, title ...string) *RFC7807Error {
+func PaymentRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Payment Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -178,9 +178,9 @@ func PaymentRequiredProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusPaymentRequired, t, detail)
 }
 
-// ForbiddenProblem creates a 403 Forbidden problem detail.
+// ForbiddenProblem7807 creates a 403 Forbidden problem detail.
 // If title is empty, it defaults to "Forbidden".
-func ForbiddenProblem(detail string, title ...string) *RFC7807Error {
+func ForbiddenProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Forbidden"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -188,9 +188,9 @@ func ForbiddenProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusForbidden, t, detail)
 }
 
-// NotFoundProblem creates a 404 Not Found problem detail.
+// NotFoundProblem7807 creates a 404 Not Found problem detail.
 // If title is empty, it defaults to "Not Found".
-func NotFoundProblem(detail string, title ...string) *RFC7807Error {
+func NotFoundProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Not Found"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -198,9 +198,9 @@ func NotFoundProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusNotFound, t, detail)
 }
 
-// MethodNotAllowedProblem creates a 405 Method Not Allowed problem detail.
+// MethodNotAllowedProblem7807 creates a 405 Method Not Allowed problem detail.
 // If title is empty, it defaults to "Method Not Allowed".
-func MethodNotAllowedProblem(detail string, title ...string) *RFC7807Error {
+func MethodNotAllowedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Method Not Allowed"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -208,9 +208,9 @@ func MethodNotAllowedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusMethodNotAllowed, t, detail)
 }
 
-// NotAcceptableProblem creates a 406 Not Acceptable problem detail.
+// NotAcceptableProblem7807 creates a 406 Not Acceptable problem detail.
 // If title is empty, it defaults to "Not Acceptable".
-func NotAcceptableProblem(detail string, title ...string) *RFC7807Error {
+func NotAcceptableProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Not Acceptable"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -218,9 +218,9 @@ func NotAcceptableProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusNotAcceptable, t, detail)
 }
 
-// ProxyAuthRequiredProblem creates a 407 Proxy Authentication Required problem detail.
+// ProxyAuthRequiredProblem7807 creates a 407 Proxy Authentication Required problem detail.
 // If title is empty, it defaults to "Proxy Authentication Required".
-func ProxyAuthRequiredProblem(detail string, title ...string) *RFC7807Error {
+func ProxyAuthRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Proxy Authentication Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -228,9 +228,9 @@ func ProxyAuthRequiredProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusProxyAuthRequired, t, detail)
 }
 
-// RequestTimeoutProblem creates a 408 Request Timeout problem detail.
+// RequestTimeoutProblem7807 creates a 408 Request Timeout problem detail.
 // If title is empty, it defaults to "Request Timeout".
-func RequestTimeoutProblem(detail string, title ...string) *RFC7807Error {
+func RequestTimeoutProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Request Timeout"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -238,9 +238,9 @@ func RequestTimeoutProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusRequestTimeout, t, detail)
 }
 
-// ConflictProblem creates a 409 Conflict problem detail.
+// ConflictProblem7807 creates a 409 Conflict problem detail.
 // If title is empty, it defaults to "Conflict".
-func ConflictProblem(detail string, title ...string) *RFC7807Error {
+func ConflictProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Conflict"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -248,9 +248,9 @@ func ConflictProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusConflict, t, detail)
 }
 
-// GoneProblem creates a 410 Gone problem detail.
+// GoneProblem7807 creates a 410 Gone problem detail.
 // If title is empty, it defaults to "Gone".
-func GoneProblem(detail string, title ...string) *RFC7807Error {
+func GoneProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Gone"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -258,9 +258,9 @@ func GoneProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusGone, t, detail)
 }
 
-// LengthRequiredProblem creates a 411 Length Required problem detail.
+// LengthRequiredProblem7807 creates a 411 Length Required problem detail.
 // If title is empty, it defaults to "Length Required".
-func LengthRequiredProblem(detail string, title ...string) *RFC7807Error {
+func LengthRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Length Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -268,9 +268,9 @@ func LengthRequiredProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusLengthRequired, t, detail)
 }
 
-// PreconditionFailedProblem creates a 412 Precondition Failed problem detail.
+// PreconditionFailedProblem7807 creates a 412 Precondition Failed problem detail.
 // If title is empty, it defaults to "Precondition Failed".
-func PreconditionFailedProblem(detail string, title ...string) *RFC7807Error {
+func PreconditionFailedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Precondition Failed"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -278,9 +278,9 @@ func PreconditionFailedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusPreconditionFailed, t, detail)
 }
 
-// PayloadTooLargeProblem creates a 413 Payload Too Large problem detail.
+// PayloadTooLargeProblem7807 creates a 413 Payload Too Large problem detail.
 // If title is empty, it defaults to "Payload Too Large".
-func PayloadTooLargeProblem(detail string, title ...string) *RFC7807Error {
+func PayloadTooLargeProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Payload Too Large"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -288,9 +288,9 @@ func PayloadTooLargeProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusRequestEntityTooLarge, t, detail)
 }
 
-// URITooLongProblem creates a 414 URI Too Long problem detail.
+// URITooLongProblem7807 creates a 414 URI Too Long problem detail.
 // If title is empty, it defaults to "URI Too Long".
-func URITooLongProblem(detail string, title ...string) *RFC7807Error {
+func URITooLongProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "URI Too Long"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -298,9 +298,9 @@ func URITooLongProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusRequestURITooLong, t, detail)
 }
 
-// UnsupportedMediaTypeProblem creates a 415 Unsupported Media Type problem detail.
+// UnsupportedMediaTypeProblem7807 creates a 415 Unsupported Media Type problem detail.
 // If title is empty, it defaults to "Unsupported Media Type".
-func UnsupportedMediaTypeProblem(detail string, title ...string) *RFC7807Error {
+func UnsupportedMediaTypeProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Unsupported Media Type"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -308,9 +308,9 @@ func UnsupportedMediaTypeProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusUnsupportedMediaType, t, detail)
 }
 
-// RangeNotSatisfiableProblem creates a 416 Range Not Satisfiable problem detail.
+// RangeNotSatisfiableProblem7807 creates a 416 Range Not Satisfiable problem detail.
 // If title is empty, it defaults to "Range Not Satisfiable".
-func RangeNotSatisfiableProblem(detail string, title ...string) *RFC7807Error {
+func RangeNotSatisfiableProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Range Not Satisfiable"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -318,9 +318,9 @@ func RangeNotSatisfiableProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusRequestedRangeNotSatisfiable, t, detail)
 }
 
-// ExpectationFailedProblem creates a 417 Expectation Failed problem detail.
+// ExpectationFailedProblem7807 creates a 417 Expectation Failed problem detail.
 // If title is empty, it defaults to "Expectation Failed".
-func ExpectationFailedProblem(detail string, title ...string) *RFC7807Error {
+func ExpectationFailedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Expectation Failed"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -328,9 +328,9 @@ func ExpectationFailedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusExpectationFailed, t, detail)
 }
 
-// MisdirectedRequestProblem creates a 421 Misdirected Request problem detail.
+// MisdirectedRequestProblem7807 creates a 421 Misdirected Request problem detail.
 // If title is empty, it defaults to "Misdirected Request".
-func MisdirectedRequestProblem(detail string, title ...string) *RFC7807Error {
+func MisdirectedRequestProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Misdirected Request"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -338,9 +338,9 @@ func MisdirectedRequestProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusMisdirectedRequest, t, detail)
 }
 
-// LockedProblem creates a 423 Locked problem detail.
+// LockedProblem7807 creates a 423 Locked problem detail.
 // If title is empty, it defaults to "Locked".
-func LockedProblem(detail string, title ...string) *RFC7807Error {
+func LockedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Locked"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -348,9 +348,9 @@ func LockedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusLocked, t, detail)
 }
 
-// FailedDependencyProblem creates a 424 Failed Dependency problem detail.
+// FailedDependencyProblem7807 creates a 424 Failed Dependency problem detail.
 // If title is empty, it defaults to "Failed Dependency".
-func FailedDependencyProblem(detail string, title ...string) *RFC7807Error {
+func FailedDependencyProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Failed Dependency"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -358,9 +358,9 @@ func FailedDependencyProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusFailedDependency, t, detail)
 }
 
-// UpgradeRequiredProblem creates a 426 Upgrade Required problem detail.
+// UpgradeRequiredProblem7807 creates a 426 Upgrade Required problem detail.
 // If title is empty, it defaults to "Upgrade Required".
-func UpgradeRequiredProblem(detail string, title ...string) *RFC7807Error {
+func UpgradeRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Upgrade Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -368,9 +368,9 @@ func UpgradeRequiredProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusUpgradeRequired, t, detail)
 }
 
-// PreconditionRequiredProblem creates a 428 Precondition Required problem detail.
+// PreconditionRequiredProblem7807 creates a 428 Precondition Required problem detail.
 // If title is empty, it defaults to "Precondition Required".
-func PreconditionRequiredProblem(detail string, title ...string) *RFC7807Error {
+func PreconditionRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Precondition Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -378,9 +378,9 @@ func PreconditionRequiredProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusPreconditionRequired, t, detail)
 }
 
-// TooManyRequestsProblem creates a 429 Too Many Requests problem detail.
+// TooManyRequestsProblem7807 creates a 429 Too Many Requests problem detail.
 // If title is empty, it defaults to "Too Many Requests".
-func TooManyRequestsProblem(detail string, title ...string) *RFC7807Error {
+func TooManyRequestsProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Too Many Requests"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -388,9 +388,9 @@ func TooManyRequestsProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusTooManyRequests, t, detail)
 }
 
-// RequestHeaderFieldsTooLargeProblem creates a 431 Request Header Fields Too Large problem detail.
+// RequestHeaderFieldsTooLargeProblem7807 creates a 431 Request Header Fields Too Large problem detail.
 // If title is empty, it defaults to "Request Header Fields Too Large".
-func RequestHeaderFieldsTooLargeProblem(detail string, title ...string) *RFC7807Error {
+func RequestHeaderFieldsTooLargeProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Request Header Fields Too Large"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -398,9 +398,9 @@ func RequestHeaderFieldsTooLargeProblem(detail string, title ...string) *RFC7807
 	return NewRFC7807Error(http.StatusRequestHeaderFieldsTooLarge, t, detail)
 }
 
-// UnavailableForLegalReasonsProblem creates a 451 Unavailable For Legal Reasons problem detail.
+// UnavailableForLegalReasonsProblem7807 creates a 451 Unavailable For Legal Reasons problem detail.
 // If title is empty, it defaults to "Unavailable For Legal Reasons".
-func UnavailableForLegalReasonsProblem(detail string, title ...string) *RFC7807Error {
+func UnavailableForLegalReasonsProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Unavailable For Legal Reasons"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -408,9 +408,9 @@ func UnavailableForLegalReasonsProblem(detail string, title ...string) *RFC7807E
 	return NewRFC7807Error(http.StatusUnavailableForLegalReasons, t, detail)
 }
 
-// NotImplementedProblem creates a 501 Not Implemented problem detail.
+// NotImplementedProblem7807 creates a 501 Not Implemented problem detail.
 // If title is empty, it defaults to "Not Implemented".
-func NotImplementedProblem(detail string, title ...string) *RFC7807Error {
+func NotImplementedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Not Implemented"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -418,9 +418,9 @@ func NotImplementedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusNotImplemented, t, detail)
 }
 
-// BadGatewayProblem creates a 502 Bad Gateway problem detail.
+// BadGatewayProblem7807 creates a 502 Bad Gateway problem detail.
 // If title is empty, it defaults to "Bad Gateway".
-func BadGatewayProblem(detail string, title ...string) *RFC7807Error {
+func BadGatewayProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Bad Gateway"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -428,9 +428,9 @@ func BadGatewayProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusBadGateway, t, detail)
 }
 
-// GatewayTimeoutProblem creates a 504 Gateway Timeout problem detail.
+// GatewayTimeoutProblem7807 creates a 504 Gateway Timeout problem detail.
 // If title is empty, it defaults to "Gateway Timeout".
-func GatewayTimeoutProblem(detail string, title ...string) *RFC7807Error {
+func GatewayTimeoutProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Gateway Timeout"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -438,9 +438,9 @@ func GatewayTimeoutProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusGatewayTimeout, t, detail)
 }
 
-// HTTPVersionNotSupportedProblem creates a 505 HTTP Version Not Supported problem detail.
+// HTTPVersionNotSupportedProblem7807 creates a 505 HTTP Version Not Supported problem detail.
 // If title is empty, it defaults to "HTTP Version Not Supported".
-func HTTPVersionNotSupportedProblem(detail string, title ...string) *RFC7807Error {
+func HTTPVersionNotSupportedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "HTTP Version Not Supported"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -448,9 +448,9 @@ func HTTPVersionNotSupportedProblem(detail string, title ...string) *RFC7807Erro
 	return NewRFC7807Error(http.StatusHTTPVersionNotSupported, t, detail)
 }
 
-// VariantAlsoNegotiatesProblem creates a 506 Variant Also Negotiates problem detail.
+// VariantAlsoNegotiatesProblem7807 creates a 506 Variant Also Negotiates problem detail.
 // If title is empty, it defaults to "Variant Also Negotiates".
-func VariantAlsoNegotiatesProblem(detail string, title ...string) *RFC7807Error {
+func VariantAlsoNegotiatesProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Variant Also Negotiates"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -458,9 +458,9 @@ func VariantAlsoNegotiatesProblem(detail string, title ...string) *RFC7807Error 
 	return NewRFC7807Error(http.StatusVariantAlsoNegotiates, t, detail)
 }
 
-// InsufficientStorageProblem creates a 507 Insufficient Storage problem detail.
+// InsufficientStorageProblem7807 creates a 507 Insufficient Storage problem detail.
 // If title is empty, it defaults to "Insufficient Storage".
-func InsufficientStorageProblem(detail string, title ...string) *RFC7807Error {
+func InsufficientStorageProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Insufficient Storage"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -468,9 +468,9 @@ func InsufficientStorageProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusInsufficientStorage, t, detail)
 }
 
-// LoopDetectedProblem creates a 508 Loop Detected problem detail.
+// LoopDetectedProblem7807 creates a 508 Loop Detected problem detail.
 // If title is empty, it defaults to "Loop Detected".
-func LoopDetectedProblem(detail string, title ...string) *RFC7807Error {
+func LoopDetectedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Loop Detected"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -478,9 +478,9 @@ func LoopDetectedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusLoopDetected, t, detail)
 }
 
-// NotExtendedProblem creates a 510 Not Extended problem detail.
+// NotExtendedProblem7807 creates a 510 Not Extended problem detail.
 // If title is empty, it defaults to "Not Extended".
-func NotExtendedProblem(detail string, title ...string) *RFC7807Error {
+func NotExtendedProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Not Extended"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
@@ -488,9 +488,9 @@ func NotExtendedProblem(detail string, title ...string) *RFC7807Error {
 	return NewRFC7807Error(http.StatusNotExtended, t, detail)
 }
 
-// NetworkAuthenticationRequiredProblem creates a 511 Network Authentication Required problem detail.
+// NetworkAuthenticationRequiredProblem7807 creates a 511 Network Authentication Required problem detail.
 // If title is empty, it defaults to "Network Authentication Required".
-func NetworkAuthenticationRequiredProblem(detail string, title ...string) *RFC7807Error {
+func NetworkAuthenticationRequiredProblem7807(detail string, title ...string) *RFC7807Error {
 	t := "Network Authentication Required"
 	if len(title) > 0 && title[0] != "" {
 		t = title[0]
